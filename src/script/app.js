@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // References to DOM elements
     const startScreen = document.getElementById('start-screen');
     const questionScreen = document.getElementById('question-screen');
-    const startAdditionBtn = document.getElementById('start-addition');
-    const startSubtractionBtn = document.getElementById('start-subtraction');
 
     // Get references to footer elements
     const footerSlogan = document.getElementById('footer-slogan');
@@ -30,55 +28,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // References to selection buttons
     const levelSelection = document.getElementById('level-selection');
     const levelButtons = document.querySelectorAll('.level-btn');
-    const questionsSelection = document.getElementById('questions-selection');
     const questionButtons = document.querySelectorAll('.num-btn');
     const startTestBtn = document.getElementById('start-test-btn');
 
     // New references for provider toggle buttons
     const providerButtons = document.querySelectorAll('.provider-btn');
 
+    // Reference to animation container
+    const animationContainer = document.getElementById('animation-container');
+
+    // Reference to options container
+    const optionsContainer = document.getElementById('options-container');
+
+    // Reference to prompt element
+    const promptElement = document.getElementById('question-prompt');
+
     // Variables to store selections
-    let selectedOperations = []; // Changed from single selection
-    let selectedLevel = null;
-    let selectedNumQuestions = null;
+    let selectedOperation = 'Addition'; // Preselect Addition
+    let selectedLevel = 1; // Preselect Level 1
+    let selectedNumQuestions = 1; // Preselect Number of Questions 1
+
+    // Variable to store the current question
+    let currentQuestion = null;
 
     // Function to handle provider toggle
     function handleProviderToggle(operationName, button) {
-        if (selectedOperations.includes(operationName)) {
-            selectedOperations = selectedOperations.filter(op => op !== operationName);
+        if (selectedOperation === operationName) {
+            selectedOperation = null;
             button.classList.remove('active', 'bg-blue-500', 'text-white');
             button.classList.add('bg-gray-200');
         } else {
-            selectedOperations.push(operationName);
+            // Deselect any previously selected operation
+            if (selectedOperation !== null) {
+                const previousButton = document.querySelector(`.provider-btn.active`);
+                if (previousButton) {
+                    previousButton.classList.remove('active', 'bg-blue-500', 'text-white');
+                    previousButton.classList.add('bg-gray-200');
+                }
+            }
+            selectedOperation = operationName;
             button.classList.add('active', 'bg-blue-500', 'text-white');
             button.classList.remove('bg-gray-200');
         }
 
-        // Show level selection if at least one operation is selected
-        if (selectedOperations.length > 0) {
-            levelSelection.classList.remove('hidden');
+        // Check if all selections are made to enable the Start Test button
+        if (selectedOperation !== null && selectedLevel !== null && selectedNumQuestions !== null) {
+            startTestBtn.disabled = false;
         } else {
-            levelSelection.classList.add('hidden');
-            questionsSelection.classList.add('hidden');
             startTestBtn.disabled = true;
         }
-
-        // Reset previous selections
-        selectedLevel = null;
-        selectedNumQuestions = null;
-        questionsSelection.classList.add('hidden');
-        startTestBtn.disabled = true;
-
-        // Reset active states for level and question buttons
-        levelButtons.forEach(btn => {
-            btn.classList.remove('active', 'bg-blue-500', 'text-white');
-            btn.classList.add('bg-gray-200');
-        });
-
-        questionButtons.forEach(btn => {
-            btn.classList.remove('active', 'bg-blue-500', 'text-white');
-            btn.classList.add('bg-gray-200');
-        });
     }
 
     // Add event listeners to provider toggle buttons
@@ -94,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove existing click event listener
         /* ...existing click handler removed... */
 
-        // Add focusout event listener to handle active state
+        // Add click event listener to handle level selection
         button.addEventListener('click', () => {
             // Remove active classes from all level buttons
             levelButtons.forEach(btn => {
@@ -102,10 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.add('bg-gray-200');
             });
 
-            // Temporarily add active classes
-            button.classList.add('active');
+            // Add active classes to the clicked button
+            button.classList.add('active', 'bg-blue-500', 'text-white');
             button.classList.remove('bg-gray-200');
-            button.classList.add('bg-blue-500', 'text-white');
+
+            // Set the selected level
+            selectedLevel = parseInt(button.textContent.trim().split(' ')[1]);
+
+            // Check if all selections are made to enable the Start Test button
+            if (selectedOperation !== null && selectedLevel !== null && selectedNumQuestions !== null) {
+                startTestBtn.disabled = false;
+            } else {
+                startTestBtn.disabled = true;
+            }
         });
 
         button.addEventListener('focusout', () => {
@@ -133,6 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
             button.classList.add('active');
             button.classList.remove('bg-gray-200');
             button.classList.add('bg-blue-500', 'text-white');
+
+            // Set the selected number of questions
+            selectedNumQuestions = parseInt(button.textContent.trim());
+
+            // Check if all selections are made to enable the Start Test button
+            if (selectedOperation !== null && selectedLevel !== null && selectedNumQuestions !== null) {
+                startTestBtn.disabled = false;
+            } else {
+                startTestBtn.disabled = true;
+            }
         });
 
         button.addEventListener('focusout', () => {
@@ -142,6 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Preselect Addition, Level 1, and Number of Questions 1
+    document.getElementById('provider-addition-btn').classList.add('active', 'bg-blue-500', 'text-white');
+    document.getElementById('provider-addition-btn').classList.remove('bg-gray-200');
+    document.querySelector('.level-btn:nth-child(1)').classList.add('active', 'bg-blue-500', 'text-white');
+    document.querySelector('.level-btn:nth-child(1)').classList.remove('bg-gray-200');
+    document.querySelector('.num-btn:nth-child(1)').classList.add('active', 'bg-blue-500', 'text-white');
+    document.querySelector('.num-btn:nth-child(1)').classList.remove('bg-gray-200');
+
+    // Enable the Start Test button since all selections are preselected
+    startTestBtn.disabled = false;
 
     // Function to end the test and return to the start screen
     function endTest() {
@@ -154,9 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
         endTestBtn.classList.add('hidden');
 
         // Reset selections and counters
-        selectedOperations = [];
-        selectedLevel = null;
-        selectedNumQuestions = null;
+        selectedOperation = 'Addition';
+        selectedLevel = 1;
+        selectedNumQuestions = 1;
 
         // Reset the Start Screen selections
         providerButtons.forEach(button => {
@@ -174,6 +202,17 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('bg-gray-200');
         });
 
+        // Preselect Addition, Level 1, and Number of Questions 1
+        document.getElementById('provider-addition-btn').classList.add('active', 'bg-blue-500', 'text-white');
+        document.getElementById('provider-addition-btn').classList.remove('bg-gray-200');
+        document.querySelector('.level-btn:nth-child(1)').classList.add('active', 'bg-blue-500', 'text-white');
+        document.querySelector('.level-btn:nth-child(1)').classList.remove('bg-gray-200');
+        document.querySelector('.num-btn:nth-child(1)').classList.add('active', 'bg-blue-500', 'text-white');
+        document.querySelector('.num-btn:nth-child(1)').classList.remove('bg-gray-200');
+
+        // Enable the Start Test button since all selections are preselected
+        startTestBtn.disabled = false;
+
         // Clear any existing animations or options
         animationContainer.innerHTML = '';
         optionsContainer.innerHTML = '';
@@ -182,13 +221,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to start the test with selected options
     function startTest() {
-        if (selectedOperations.length === 0 || !selectedLevel || !selectedNumQuestions) {
-            alert('Please select at least one operation, a level, and the number of questions.');
+        if (selectedOperation === null || selectedLevel === null || selectedNumQuestions === null) {
+            alert('Please select an operation, a level, and the number of questions.');
             return;
         }
 
         // Find selected providers
-        const activeProviders = providers.filter(p => selectedOperations.includes(p.name));
+        const activeProviders = providers.filter(p => p.name === selectedOperation);
 
         if (activeProviders.length === 0) {
             console.error(`No providers selected.`);
@@ -228,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Get the current question
-            const currentQuestion = mixedQuestions[currentQuestionIndex];
+            currentQuestion = mixedQuestions[currentQuestionIndex];
             console.log(currentQuestion);
 
             // Display the prompt

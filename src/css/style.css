@@ -269,3 +269,8 @@ button {
     margin: 0;
     padding: 0;
 }
+
+/* Ensure that hidden class properly hides elements */
+.hidden {
+    display: none;
+}
