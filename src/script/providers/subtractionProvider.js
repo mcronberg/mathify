@@ -5,37 +5,41 @@ export class SubtractionProvider extends MathProvider {
         super(level);
         this.name = 'Subtraction'; // Set provider name
         this.levelRanges = {
-            1: { min: 1, max: 10, operandsRange: { min: 2, max: 2 } },
-            2: { min: 10, max: 50, operandsRange: { min: 2, max: 3 } },
-            3: { min: 50, max: 100, operandsRange: { min: 2, max: 4 } }
+            1: { min: 1, max: 10 },
+            2: { min: 10, max: 50 },
+            3: { min: 50, max: 100 }
         };
         this.range = this.levelRanges[level];
     }
 
     generateQuestion() {
-        const { min, max, operandsRange } = this.range;
-        const numOperands = operandsRange.min === operandsRange.max
-            ? operandsRange.min
-            : Math.floor(Math.random() * (operandsRange.max - operandsRange.min + 1)) + operandsRange.min;
+        const { min, max } = this.range;
 
         const numbers = [];
-        let answer = Math.floor(Math.random() * (max - min + 1)) + min;
-        numbers.push(answer);
-
-        for (let i = 1; i < numOperands; i++) {
-            const num = Math.floor(Math.random() * (answer - min + 1)) + min;
-            numbers.push(num);
-            answer -= num;
-        }
-
+        let x = Math.floor(Math.random() * (max - min + 1)) + min;
+        numbers.push(x);
+        let y = Math.floor(Math.random() * (max - min + 1)) + min;
+        numbers.push(y);
+        let answer = x - y;
         console.log(`Generated Subtraction Question: ${numbers.join(' - ')} = ${answer}`);
+
+        let options = [{ text: answer.toString(), value: answer, isCorrect: true },
+        { text: (answer + 1).toString(), value: answer + 1, isCorrect: false },
+        { text: (answer - 1).toString(), value: answer - 1, isCorrect: false },
+        { text: (answer + 2).toString(), value: answer + 2, isCorrect: false }
+
+        ];
+        for (let i = options.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [options[i], options[j]] = [options[j], options[i]];
+        }
 
         return {
             id: crypto.randomUUID(),
             numbers,
             prompt: `What is ${numbers.join(' - ')}?`,
             correctAnswer: answer,
-            options: this.generateAnswerOptions(answer),
+            options: options,
             level: this.level
         };
     }
