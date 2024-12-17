@@ -28,13 +28,14 @@ export class SubtractionProvider extends MathProvider {
             answer -= num;
         }
 
+        console.log(`Generated Subtraction Question: ${numbers.join(' - ')} = ${answer}`);
+
         return {
             id: crypto.randomUUID(),
             numbers,
             prompt: `What is ${numbers.join(' - ')}?`,
             correctAnswer: answer,
             options: this.generateAnswerOptions(answer),
-            validate: (userAnswer) => parseInt(userAnswer) === answer,
             level: this.level
         };
     }

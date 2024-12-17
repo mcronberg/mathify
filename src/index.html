@@ -42,7 +42,7 @@
     <main id="start-screen" class="flex-grow p-4 flex flex-col items-center justify-center">
         <div class="w-full max-w-4xl relative">
             <h2 class="text-2xl mb-6 text-center">Create Your Test</h2>
-            
+
             <!-- Grouped Selection Sections -->
             <div class="mb-4 flex flex-col justify-center selection-container">
                 <!-- Provider Selection -->
@@ -50,14 +50,16 @@
                     <h3 class="text-lg mb-2 text-center">Select Operations</h3>
                     <div class="flex flex-col space-y-1"> <!-- Ensure space-y-1 is applied -->
                         <!-- Replace checkboxes with toggle buttons -->
-                        <button type="button" id="provider-addition-btn" class="provider-btn selection-button px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
+                        <button type="button" id="provider-addition-btn"
+                            class="provider-btn selection-button px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
                             Addition
                         </button>
-                        
-                        <button type="button" id="provider-subtraction-btn" class="provider-btn selection-button px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
+
+                        <button type="button" id="provider-subtraction-btn"
+                            class="provider-btn selection-button px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
                             Subtraction
                         </button>
-                        
+
                         <!-- Add more provider buttons similarly if needed -->
                     </div>
                 </div>
@@ -66,9 +68,15 @@
                 <div class="w-full sm:w-auto mb-4 sm:mb-0" id="level-selection"> <!-- Added id="level-selection" -->
                     <h3 class="text-lg mb-2 text-center">Select Level</h3>
                     <div class="flex flex-col space-y-1"> <!-- Ensure space-y-1 is applied -->
-                        <button class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 1</button>
-                        <button class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 2</button>
-                        <button class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 3</button>
+                        <button
+                            class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level
+                            1</button>
+                        <button
+                            class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level
+                            2</button>
+                        <button
+                            class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level
+                            3</button>
                     </div>
                 </div>
 
@@ -76,18 +84,27 @@
                 <div class="w-full sm:w-auto" id="questions-selection"> <!-- Removed class="hidden" -->
                     <h3 class="text-lg mb-2 text-center">Number of Questions</h3>
                     <div class="flex flex-col space-y-1"> <!-- Ensure space-y-1 is applied -->
-                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">1</button>
-                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">5</button>
-                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">10</button>
-                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">25</button>
-                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">50</button>
+                        <button
+                            class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">1</button>
+                        <button
+                            class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">2</button>
+                        <button
+                            class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">5</button>
+                        <button
+                            class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">10</button>
+                        <button
+                            class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">25</button>
+                        <button
+                            class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">50</button>
                     </div>
                 </div>
             </div>
 
             <!-- Start Test Button -->
             <div class="mt-6 text-center">
-                <button id="start-test-btn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition" disabled>Start Test</button>
+                <button id="start-test-btn"
+                    class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition" disabled>Start
+                    Test</button>
             </div>
         </div>
     </main>
@@ -114,7 +131,8 @@
             Mathify - Your way to mastering math!
         </div>
         <!-- "End Test" button visible on Question Screen -->
-        <button id="end-test-btn" class="hidden px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">End Test</button>
+        <button id="end-test-btn" class="hidden px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">End
+            Test</button>
     </footer>
 
     <script type="module" src="script/app.js"></script>

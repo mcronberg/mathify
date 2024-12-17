@@ -51,6 +51,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variable to store the current question
     let currentQuestion = null;
 
+    // Variable to store the mixed questions
+    let mixedQuestions = [];
+
+    // Load saved selections from local storage
+    function loadSelections() {
+        const savedOperation = localStorage.getItem('selectedOperation');
+        const savedLevel = localStorage.getItem('selectedLevel');
+        const savedNumQuestions = localStorage.getItem('selectedNumQuestions');
+
+        if (savedOperation) {
+            selectedOperation = savedOperation;
+            const operationButton = document.getElementById(`provider-${savedOperation.toLowerCase()}-btn`);
+            if (operationButton) {
+                operationButton.classList.add('active', 'bg-blue-500', 'text-white');
+                operationButton.classList.remove('bg-gray-200');
+            }
+        }
+
+        if (savedLevel && !isNaN(savedLevel)) {
+            selectedLevel = parseInt(savedLevel);
+            const levelButton = document.querySelector(`.level-btn:nth-child(${selectedLevel})`);
+            if (levelButton) {
+                levelButton.classList.add('active', 'bg-blue-500', 'text-white');
+                levelButton.classList.remove('bg-gray-200');
+            }
+        }
+
+        if (savedNumQuestions && !isNaN(savedNumQuestions)) {
+            selectedNumQuestions = parseInt(savedNumQuestions);
+            const numQuestionsButton = document.querySelector(`.num-btn:nth-child(${selectedNumQuestions})`);
+            if (numQuestionsButton) {
+                numQuestionsButton.classList.add('active', 'bg-blue-500', 'text-white');
+                numQuestionsButton.classList.remove('bg-gray-200');
+            }
+        }
+
+        // Enable the Start Test button if all selections are made
+        if (selectedOperation !== null && selectedLevel !== null && selectedNumQuestions !== null) {
+            startTestBtn.disabled = false;
+        }
+    }
+
+    // Save selections to local storage
+    function saveSelections() {
+        localStorage.setItem('selectedOperation', selectedOperation);
+        localStorage.setItem('selectedLevel', selectedLevel);
+        localStorage.setItem('selectedNumQuestions', selectedNumQuestions);
+    }
+
     // Function to handle provider toggle
     function handleProviderToggle(operationName, button) {
         if (selectedOperation === operationName) {
@@ -77,6 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             startTestBtn.disabled = true;
         }
+
+        // Save selections to local storage
+        saveSelections();
     }
 
     // Add event listeners to provider toggle buttons
@@ -113,6 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 startTestBtn.disabled = true;
             }
+
+            // Save selections to local storage
+            saveSelections();
         });
 
         button.addEventListener('focusout', () => {
@@ -150,6 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 startTestBtn.disabled = true;
             }
+
+            // Save selections to local storage
+            saveSelections();
         });
 
         button.addEventListener('focusout', () => {
@@ -160,19 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Preselect Addition, Level 1, and Number of Questions 1
-    document.getElementById('provider-addition-btn').classList.add('active', 'bg-blue-500', 'text-white');
-    document.getElementById('provider-addition-btn').classList.remove('bg-gray-200');
-    document.querySelector('.level-btn:nth-child(1)').classList.add('active', 'bg-blue-500', 'text-white');
-    document.querySelector('.level-btn:nth-child(1)').classList.remove('bg-gray-200');
-    document.querySelector('.num-btn:nth-child(1)').classList.add('active', 'bg-blue-500', 'text-white');
-    document.querySelector('.num-btn:nth-child(1)').classList.remove('bg-gray-200');
-
-    // Enable the Start Test button since all selections are preselected
-    startTestBtn.disabled = false;
+    // Load saved selections from local storage
+    loadSelections();
 
     // Function to end the test and return to the start screen
     function endTest() {
+        console.log('Ending test...');
         // Hide question screen and show start screen
         questionScreen.classList.add('hidden');
         startScreen.classList.remove('hidden');
@@ -182,36 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
         endTestBtn.classList.add('hidden');
 
         // Reset selections and counters
-        selectedOperation = 'Addition';
-        selectedLevel = 1;
-        selectedNumQuestions = 1;
+        currentQuestion = null;
+        mixedQuestions = [];
 
-        // Reset the Start Screen selections
-        providerButtons.forEach(button => {
-            button.classList.remove('active', 'bg-blue-500', 'text-white');
-            button.classList.add('bg-gray-200');
-        });
-
-        levelButtons.forEach(btn => {
-            btn.classList.remove('active', 'bg-blue-500', 'text-white');
-            btn.classList.add('bg-gray-200');
-        });
-
-        questionButtons.forEach(btn => {
-            btn.classList.remove('active', 'bg-blue-500', 'text-white');
-            btn.classList.add('bg-gray-200');
-        });
-
-        // Preselect Addition, Level 1, and Number of Questions 1
-        document.getElementById('provider-addition-btn').classList.add('active', 'bg-blue-500', 'text-white');
-        document.getElementById('provider-addition-btn').classList.remove('bg-gray-200');
-        document.querySelector('.level-btn:nth-child(1)').classList.add('active', 'bg-blue-500', 'text-white');
-        document.querySelector('.level-btn:nth-child(1)').classList.remove('bg-gray-200');
-        document.querySelector('.num-btn:nth-child(1)').classList.add('active', 'bg-blue-500', 'text-white');
-        document.querySelector('.num-btn:nth-child(1)').classList.remove('bg-gray-200');
-
-        // Enable the Start Test button since all selections are preselected
-        startTestBtn.disabled = false;
+        // Load saved selections from local storage
+        loadSelections();
 
         // Clear any existing animations or options
         animationContainer.innerHTML = '';
@@ -221,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to start the test with selected options
     function startTest() {
+        console.log('Starting test...');
         if (selectedOperation === null || selectedLevel === null || selectedNumQuestions === null) {
             alert('Please select an operation, a level, and the number of questions.');
             return;
@@ -238,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activeProviders.forEach(provider => provider.setLevel(selectedLevel));
 
         // Generate mixed questions
-        const mixedQuestions = [];
+        mixedQuestions = [];
         for (let i = 0; i < selectedNumQuestions; i++) {
             const randomProvider = activeProviders[Math.floor(Math.random() * activeProviders.length)];
             const question = randomProvider.generateQuestion();
@@ -258,6 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Function to load and display a question
         function loadQuestion() {
+            console.log('Loading question...');
             // Clear previous animation
             animationContainer.innerHTML = '';
 
@@ -268,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Get the current question
             currentQuestion = mixedQuestions[currentQuestionIndex];
-            console.log(currentQuestion);
+            console.log(`Loading question ${currentQuestionIndex + 1} of ${mixedQuestions.length}`);
 
             // Display the prompt
             promptElement.textContent = currentQuestion.prompt;
@@ -289,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Handle option click
         function handleOptionClick(event) {
+            console.log('Option clicked...');
             const selectedValue = parseInt(event.target.value);
             const isCorrect = selectedValue === currentQuestion.correctAnswer;
 
@@ -298,7 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Advance to next question after a short delay
                 setTimeout(() => {
                     currentQuestionIndex += 1;
-                    loadQuestion();
+                    if (currentQuestionIndex < mixedQuestions.length) {
+                        loadQuestion();
+                    } else {
+                        endTest();
+                    }
                 }, 1000);
             } else {
                 // Show wrong animation
@@ -308,6 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Show animation based on answer correctness
         function showAnimation(type) {
+            console.log('Showing animation...');
             const animationMsg = document.createElement('div');
             animationMsg.classList.add('animation-message');
 
