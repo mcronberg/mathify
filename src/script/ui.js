@@ -29,6 +29,14 @@ export function initUI(settings, providers) {
                 operationButton.classList.add('active', 'bg-blue-500', 'text-white');
                 operationButton.classList.remove('bg-gray-200');
             }
+        } else {
+            // Select the first provider by default
+            const firstProviderButton = providerButtons[0];
+            if (firstProviderButton) {
+                selectedOperation = firstProviderButton.textContent.trim();
+                firstProviderButton.classList.add('active', 'bg-blue-500', 'text-white');
+                firstProviderButton.classList.remove('bg-gray-200');
+            }
         }
 
         if (savedLevel && !isNaN(savedLevel)) {
@@ -38,6 +46,14 @@ export function initUI(settings, providers) {
                 levelButton.classList.add('active', 'bg-blue-500', 'text-white');
                 levelButton.classList.remove('bg-gray-200');
             }
+        } else {
+            // Select the first level by default
+            const firstLevelButton = levelButtons[0];
+            if (firstLevelButton) {
+                selectedLevel = parseInt(firstLevelButton.textContent.trim().split(' ')[1]);
+                firstLevelButton.classList.add('active', 'bg-blue-500', 'text-white');
+                firstLevelButton.classList.remove('bg-gray-200');
+            }
         }
 
         if (savedNumQuestions && !isNaN(savedNumQuestions)) {
@@ -46,6 +62,14 @@ export function initUI(settings, providers) {
             if (numQuestionsButton) {
                 numQuestionsButton.classList.add('active', 'bg-blue-500', 'text-white');
                 numQuestionsButton.classList.remove('bg-gray-200');
+            }
+        } else {
+            // Select the first number of questions by default
+            const firstNumQuestionsButton = questionButtons[0];
+            if (firstNumQuestionsButton) {
+                selectedNumQuestions = parseInt(firstNumQuestionsButton.textContent.trim());
+                firstNumQuestionsButton.classList.add('active', 'bg-blue-500', 'text-white');
+                firstNumQuestionsButton.classList.remove('bg-gray-200');
             }
         }
 

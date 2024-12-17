@@ -1,7 +1,6 @@
 import Settings from './settings.js';
 import { initMobileMenu } from './mobileMenu.js';
 import { initUI } from './ui.js';
-import { createTest } from './testManager.js';
 import { AdditionProvider } from './providers/additionProvider.js';
 import { SubtractionProvider } from './providers/subtractionProvider.js';
 
