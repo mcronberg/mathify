@@ -70,12 +70,6 @@
     /* Adjust the value as needed */
 }
 
-/* Ensure the start screen elements are styled appropriately */
-#start-screen .bg-white {
-    /* ...existing styles... */
-    /* Add any additional styles if needed */
-}
-
 /* Optional: Style the start buttons */
 #start-addition,
 #start-subtraction {
@@ -83,27 +77,20 @@
     width: 100%;
 }
 
-/* Active state for selection buttons */
-.active {
-    /* You can customize the active state as needed */
-    /* Example: */
-    /* background-color: #3490dc; */
-    /* color: white; */
-    /* Ensure active state is visually distinct */
-}
-
 /* Remove active state on hover to prevent immediate color change */
 .level-btn:hover:not(.active),
 .num-btn:hover:not(.active),
 .provider-btn:hover:not(.active) {
-    background-color: #e5e7eb; /* Tailwind's bg-gray-200 */
+    background-color: #e5e7eb;
+    /* Tailwind's bg-gray-200 */
 }
 
 /* Ensure active buttons remain blue only after focus is lost */
 .level-btn.active,
 .num-btn.active,
 .provider-btn.active {
-    background-color: #3b82f6; /* Tailwind's bg-blue-500 */
+    background-color: #3b82f6;
+    /* Tailwind's bg-blue-500 */
     color: white;
 }
 
@@ -125,16 +112,9 @@ button:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Active state for number of questions buttons */
-.num-btn.bg-blue-500 {
-    /* Additional styles for active number buttons */
-}
 
-/* Ensure selected buttons have a distinct appearance */
-.level-btn.bg-blue-500,
-.num-btn.bg-blue-500 {
-    /* Additional styles for active buttons if needed */
-}
+
+
 
 /* Optional: Add cursor pointer to all buttons */
 button {
@@ -166,6 +146,7 @@ button {
 
 /* Responsive Adjustments if Needed */
 @media (max-width: 768px) {
+
     /* Ensure the layout stacks vertically on smaller screens */
     #start-screen .flex {
         flex-direction: column;
@@ -202,6 +183,7 @@ button {
 
 /* Responsive Adjustments if Needed */
 @media (max-width: 768px) {
+
     /* Ensure the layout stacks vertically on smaller screens */
     #start-screen .flex {
         flex-direction: column;
@@ -209,15 +191,10 @@ button {
     }
 }
 
-/* Styles for provider toggle buttons */
-.provider-btn {
-    /* Base styles */
-    px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition;
-}
-
 .provider-btn.active {
     /* Active state styles */
-    background-color: #3b82f6; /* Tailwind's bg-blue-500 */
+    background-color: #3b82f6;
+    /* Tailwind's bg-blue-500 */
     color: white;
 }
 
@@ -238,7 +215,7 @@ button {
 }
 
 /* Optional: Adjust spacing between grouped sections */
-.mb-4.flex.flex-wrap.justify-center.space-x-4 > div {
+.mb-4.flex.flex-wrap.justify-center.space-x-4>div {
     margin-bottom: 0;
 }
 
@@ -253,6 +230,7 @@ button {
 
 /* Responsive adjustments for small screens */
 @media (max-width: 640px) {
+
     .provider-btn,
     .level-btn,
     .num-btn {
