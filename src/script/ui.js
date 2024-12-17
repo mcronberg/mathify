@@ -11,16 +11,33 @@ export function initUI(settings, providers) {
     const optionsContainer = document.getElementById('options-container');
     const promptElement = document.getElementById('question-prompt');
 
-    let selectedOperation = 'Addition';
-    let selectedLevel = 1;
-    let selectedNumQuestions = 1;
+    let selectedOperation = null;
+    let selectedLevel = null;
+    let selectedNumQuestions = null;
     let currentQuestion = null;
     let mixedQuestions = [];
+
+    function clearSelections() {
+        providerButtons.forEach(button => {
+            button.classList.remove('active', 'bg-blue-500', 'text-white');
+            button.classList.add('bg-gray-200');
+        });
+        levelButtons.forEach(button => {
+            button.classList.remove('active', 'bg-blue-500', 'text-white');
+            button.classList.add('bg-gray-200');
+        });
+        questionButtons.forEach(button => {
+            button.classList.remove('active', 'bg-blue-500', 'text-white');
+            button.classList.add('bg-gray-200');
+        });
+    }
 
     function loadSelections() {
         const savedOperation = localStorage.getItem('selectedOperation');
         const savedLevel = localStorage.getItem('selectedLevel');
         const savedNumQuestions = localStorage.getItem('selectedNumQuestions');
+
+        clearSelections();
 
         if (savedOperation) {
             selectedOperation = savedOperation;
@@ -41,7 +58,7 @@ export function initUI(settings, providers) {
 
         if (savedLevel && !isNaN(savedLevel)) {
             selectedLevel = parseInt(savedLevel);
-            const levelButton = document.querySelector(`.level-btn:nth-child(${selectedLevel})`);
+            const levelButton = document.querySelector(`.level-btn:nth-child(${savedLevel})`);
             if (levelButton) {
                 levelButton.classList.add('active', 'bg-blue-500', 'text-white');
                 levelButton.classList.remove('bg-gray-200');
@@ -58,7 +75,7 @@ export function initUI(settings, providers) {
 
         if (savedNumQuestions && !isNaN(savedNumQuestions)) {
             selectedNumQuestions = parseInt(savedNumQuestions);
-            const numQuestionsButton = document.querySelector(`.num-btn:nth-child(${selectedNumQuestions})`);
+            const numQuestionsButton = document.querySelector(`.num-btn:nth-child(${savedNumQuestions})`);
             if (numQuestionsButton) {
                 numQuestionsButton.classList.add('active', 'bg-blue-500', 'text-white');
                 numQuestionsButton.classList.remove('bg-gray-200');
