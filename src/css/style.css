@@ -1,0 +1,267 @@
+/* Example custom animations */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Update the shake animation */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    15%,
+    45%,
+    75% {
+        transform: translateX(-10px);
+    }
+
+    30%,
+    60%,
+    90% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+    /* Ensure the element doesn't affect layout during animation */
+    display: inline-block;
+    transform: translateX(0);
+    /* Ensure the transform starts at zero */
+}
+
+/* Add styles to position the animation message absolutely */
+#animation-container {
+    position: absolute;
+    bottom: 20px;
+    /* Provide spacing from the bottom */
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* Adjust the animation-message class */
+.animation-message {
+    width: 100%;
+    text-align: center;
+}
+
+/* Style for content-wrapper to add bottom padding */
+.content-wrapper {
+    padding-bottom: 60px;
+    /* Adjust the value as needed */
+}
+
+/* Ensure the start screen elements are styled appropriately */
+#start-screen .bg-white {
+    /* ...existing styles... */
+    /* Add any additional styles if needed */
+}
+
+/* Optional: Style the start buttons */
+#start-addition,
+#start-subtraction {
+    /* ...existing button styles... */
+    width: 100%;
+}
+
+/* Active state for selection buttons */
+.active {
+    /* You can customize the active state as needed */
+    /* Example: */
+    /* background-color: #3490dc; */
+    /* color: white; */
+    /* Ensure active state is visually distinct */
+}
+
+/* Remove active state on hover to prevent immediate color change */
+.level-btn:hover:not(.active),
+.num-btn:hover:not(.active),
+.provider-btn:hover:not(.active) {
+    background-color: #e5e7eb; /* Tailwind's bg-gray-200 */
+}
+
+/* Ensure active buttons remain blue only after focus is lost */
+.level-btn.active,
+.num-btn.active,
+.provider-btn.active {
+    background-color: #3b82f6; /* Tailwind's bg-blue-500 */
+    color: white;
+}
+
+/* Optional: Remove focus outline for better aesthetics */
+button:focus {
+    outline: none;
+}
+
+/* Active state for provider checkboxes */
+.provider-checkbox:checked+label {
+    font-weight: bold;
+    color: #3490dc;
+    /* Customize as needed */
+}
+
+/* Active state for level buttons */
+.level-btn.bg-blue-500 {
+    /* Additional styles for active level buttons */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Active state for number of questions buttons */
+.num-btn.bg-blue-500 {
+    /* Additional styles for active number buttons */
+}
+
+/* Ensure selected buttons have a distinct appearance */
+.level-btn.bg-blue-500,
+.num-btn.bg-blue-500 {
+    /* Additional styles for active buttons if needed */
+}
+
+/* Optional: Add cursor pointer to all buttons */
+button {
+    cursor: pointer;
+}
+
+/* Ensure that the levels-selection divs are clearly visible when displayed */
+.levels-selection {
+    /* Adjust margin or padding if necessary */
+    margin-top: 8px;
+}
+
+/* Ensure that Number of Questions section is styled consistently */
+.num-btn {
+    /* Optional: Uniform size for number buttons */
+    width: 40px;
+}
+
+/* Additional Styles to Enhance Visibility */
+#start-screen .levels-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#start-screen .levels-selection button {
+    margin: 4px 0;
+}
+
+/* Responsive Adjustments if Needed */
+@media (max-width: 768px) {
+    /* Ensure the layout stacks vertically on smaller screens */
+    #start-screen .flex {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Ensure that the global level selection is properly styled */
+#start-screen .levels-selection {
+    /* Adjust as the global level selection is now separate */
+    margin-top: 8px;
+}
+
+.level-btn {
+    /* Optional: Adjust styles for global level buttons */
+    width: 80px;
+}
+
+/* Optional: Highlight active level buttons */
+.level-btn.bg-blue-500 {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure Number of Questions section remains consistent */
+.num-btn {
+    width: 40px;
+}
+
+/* Additional Styles to Enhance Visibility */
+#start-screen .flex {
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsive Adjustments if Needed */
+@media (max-width: 768px) {
+    /* Ensure the layout stacks vertically on smaller screens */
+    #start-screen .flex {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Styles for provider toggle buttons */
+.provider-btn {
+    /* Base styles */
+    px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition;
+}
+
+.provider-btn.active {
+    /* Active state styles */
+    background-color: #3b82f6; /* Tailwind's bg-blue-500 */
+    color: white;
+}
+
+/* Optional: Add smooth transition for background and color */
+.provider-btn {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Styles for grouped selection sections */
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+    .sm\\:w-auto {
+        width: auto;
+    }
+}
+
+/* Optional: Adjust spacing between grouped sections */
+.mb-4.flex.flex-wrap.justify-center.space-x-4 > div {
+    margin-bottom: 0;
+}
+
+/* Ensure provider, level, and number buttons are aligned properly */
+.provider-btn,
+.level-btn,
+.num-btn {
+    /* Ensure all buttons have consistent sizing */
+    min-width: 80px;
+    text-align: center;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 640px) {
+    .provider-btn,
+    .level-btn,
+    .num-btn {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .flex-wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+}

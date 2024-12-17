@@ -1,0 +1,41 @@
+
+# Node modules
+node_modules/
+
+# Build directories
+dist/
+build/
+
+# Dependency directories
+bower_components/
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Cache
+.cache/
+*.cache
+
+# Temp files
+tmp/
+temp/
+
+# Testing
+coverage/
+*.spec.js
