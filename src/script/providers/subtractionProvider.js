@@ -19,7 +19,7 @@ export class SubtractionProvider extends MathProvider {
         const numbers = [];
         let x = Math.floor(Math.random() * (max - min + 1)) + min;
         let y = Math.floor(Math.random() * (max - min + 1)) + min;
-        if (this.level === 1) {
+        if (this.level < 3) {
             if (x < y) {
                 [x, y] = [y, x];
             }

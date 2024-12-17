@@ -28,6 +28,7 @@ export function initQuestionScreenUI(providers, endTest) {
         mixedQuestions = [];
         for (let i = 0; i < selectedNumQuestions; i++) {
             const randomProvider = activeProviders[Math.floor(Math.random() * activeProviders.length)];
+            randomProvider.setLevel(selectedLevel); // Ensure the level is set for each question
             const question = randomProvider.generateQuestion();
             mixedQuestions.push(question);
         }

@@ -50,7 +50,7 @@ export function initStartScreenUI(settings, providers, startTest) {
 
         if (savedLevel && !isNaN(savedLevel)) {
             selectedLevel = parseInt(savedLevel);
-            const levelButton = document.querySelector(`.level-btn:nth-child(${savedLevel})`);
+            const levelButton = levelButtons[savedLevel - 1];
             if (levelButton) {
                 levelButton.classList.add('active', 'bg-blue-500', 'text-white');
                 levelButton.classList.remove('bg-gray-200');
@@ -59,7 +59,7 @@ export function initStartScreenUI(settings, providers, startTest) {
             // Select the first level by default
             const firstLevelButton = levelButtons[0];
             if (firstLevelButton) {
-                selectedLevel = parseInt(firstLevelButton.textContent.trim().split(' ')[1]);
+                selectedLevel = 1;
                 firstLevelButton.classList.add('active', 'bg-blue-500', 'text-white');
                 firstLevelButton.classList.remove('bg-gray-200');
             }
@@ -67,7 +67,7 @@ export function initStartScreenUI(settings, providers, startTest) {
 
         if (savedNumQuestions && !isNaN(savedNumQuestions)) {
             selectedNumQuestions = parseInt(savedNumQuestions);
-            const numQuestionsButton = document.querySelector(`.num-btn:nth-child(${savedNumQuestions})`);
+            const numQuestionsButton = questionButtons[savedNumQuestions - 1];
             if (numQuestionsButton) {
                 numQuestionsButton.classList.add('active', 'bg-blue-500', 'text-white');
                 numQuestionsButton.classList.remove('bg-gray-200');
@@ -135,7 +135,7 @@ export function initStartScreenUI(settings, providers, startTest) {
             button.classList.add('active', 'bg-blue-500', 'text-white');
             button.classList.remove('bg-gray-200');
 
-            selectedLevel = parseInt(button.textContent.trim().split(' ')[1]);
+            selectedLevel = parseInt(button.textContent);
 
             if (selectedOperation !== null && selectedLevel !== null && selectedNumQuestions !== null) {
                 startTestBtn.disabled = false;
@@ -186,6 +186,7 @@ export function initStartScreenUI(settings, providers, startTest) {
 
     if (startTestBtn) {
         startTestBtn.addEventListener('click', () => {
+            console.log(selectedOperation, selectedLevel, selectedNumQuestions);
             startTest(selectedOperation, selectedLevel, selectedNumQuestions);
         });
     }
