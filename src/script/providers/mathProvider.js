@@ -6,6 +6,23 @@ export class MathProvider {
         this.range = this.levelRanges[level];
     }
 
+    // generate random number between min and max (inclusive)
+    generateRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    
+    generateRandomArrayWithNumber(x, min, max, mustNotInclude) {
+        const numbers = new Set();
+        while (numbers.size < x) {
+            const randomNumber = this.generateRandomNumber(min, max);
+            if (randomNumber !== mustNotInclude) {
+                numbers.add(randomNumber);
+            }
+        }
+        return Array.from(numbers);
+    }
+
     generateAnswerOptions(correctAnswer) {
         const options = new Set();
         const variance = Math.ceil(correctAnswer * 0.1); // 10% variance

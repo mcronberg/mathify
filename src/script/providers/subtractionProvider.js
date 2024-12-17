@@ -14,21 +14,48 @@ export class SubtractionProvider extends MathProvider {
 
     generateQuestion() {
         const { min, max } = this.range;
+        console.log(`Subtraction Level: ${this.level}, Range: ${min} - ${max}`);
 
         const numbers = [];
         let x = Math.floor(Math.random() * (max - min + 1)) + min;
-        numbers.push(x);
         let y = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (this.level === 1) {
+            if (x < y) {
+                [x, y] = [y, x];
+            }
+        }
+        numbers.push(x);
         numbers.push(y);
         let answer = x - y;
         console.log(`Generated Subtraction Question: ${numbers.join(' - ')} = ${answer}`);
 
-        let options = [{ text: answer.toString(), value: answer, isCorrect: true },
-        { text: (answer + 1).toString(), value: answer + 1, isCorrect: false },
-        { text: (answer - 1).toString(), value: answer - 1, isCorrect: false },
-        { text: (answer + 2).toString(), value: answer + 2, isCorrect: false }
+        let options = [];
+        if (this.level === 1) {
+            options.push({ text: answer.toString(), value: answer, isCorrect: true });
 
-        ];
+            let count = 0;
+            while (count < 3) {
+                let randomNumber = this.generateRandomNumber(-3, 3);
+                if (randomNumber + answer !== answer && !options.find(option => option.value === (answer + randomNumber))) {
+                    options.push({ text: (answer + randomNumber).toString(), value: answer + randomNumber, isCorrect: false });
+                    count++;
+                }
+            }
+        }
+
+        if (this.level === 2) {
+            options.push({ text: answer.toString(), value: answer, isCorrect: true });
+
+            let count = 0;
+            while (count < 3) {
+                let randomNumber = this.generateRandomNumber(-10, 10);
+                if (randomNumber + answer !== answer && !options.find(option => option.value === (answer + randomNumber))) {
+                    options.push({ text: (answer + randomNumber).toString(), value: answer + randomNumber, isCorrect: false });
+                    count++;
+                }
+            }
+        }
+
         for (let i = options.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [options[i], options[j]] = [options[j], options[i]];
