@@ -112,10 +112,6 @@ button:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-
-
-
-
 /* Optional: Add cursor pointer to all buttons */
 button {
     cursor: pointer;
@@ -242,4 +238,34 @@ button {
         flex-direction: column;
         align-items: center;
     }
+}
+
+/* Ensure all selection buttons have consistent top margins */
+.selection-button {
+    margin-top: 0; /* Remove any default top margin */
+}
+
+.selection-button + .selection-button {
+    margin-top: 4px; /* Set a uniform gap of 4px between buttons to match space-y-1 */
+}
+
+/* Arrange selection sections vertically within their container */
+.selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px; /* Ensure gap aligns with desired spacing (space-y-2) */
+}
+
+/* Remove space-x-4 from the main selection container to prevent horizontal shifting */
+/* If any other horizontal spacing utilities are present, remove or adjust them accordingly */
+
+/* Remove any redundant margin or padding that might affect spacing */
+.level-btn,
+.num-btn,
+.provider-btn {
+    /* Ensure consistent sizing without additional margins */
+    min-width: auto;
+    margin: 0;
+    padding: 0;
 }

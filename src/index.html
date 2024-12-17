@@ -40,21 +40,21 @@
 
     <!-- Start Screen -->
     <main id="start-screen" class="flex-grow p-4 flex flex-col items-center justify-center">
-        <div class="w-full max-w-4xl bg-white p-6 rounded shadow relative">
+        <div class="w-full max-w-4xl relative">
             <h2 class="text-2xl mb-6 text-center">Create Your Test</h2>
             
             <!-- Grouped Selection Sections -->
-            <div class="mb-4 flex flex-wrap justify-center space-x-4">
+            <div class="mb-4 flex flex-col justify-center selection-container">
                 <!-- Provider Selection -->
                 <div class="w-full sm:w-auto mb-4 sm:mb-0">
                     <h3 class="text-lg mb-2 text-center">Select Operations</h3>
-                    <div class="flex justify-center space-x-2">
+                    <div class="flex flex-col space-y-1"> <!-- Ensure space-y-1 is applied -->
                         <!-- Replace checkboxes with toggle buttons -->
-                        <button type="button" id="provider-addition-btn" class="provider-btn px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
+                        <button type="button" id="provider-addition-btn" class="provider-btn selection-button px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
                             Addition
                         </button>
                         
-                        <button type="button" id="provider-subtraction-btn" class="provider-btn px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
+                        <button type="button" id="provider-subtraction-btn" class="provider-btn selection-button px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
                             Subtraction
                         </button>
                         
@@ -65,22 +65,22 @@
                 <!-- Global Level Selection -->
                 <div class="w-full sm:w-auto mb-4 sm:mb-0">
                     <h3 class="text-lg mb-2 text-center">Select Level</h3>
-                    <div class="flex justify-center space-x-2">
-                        <button class="level-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 1</button>
-                        <button class="level-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 2</button>
-                        <button class="level-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 3</button>
+                    <div class="flex flex-col space-y-1"> <!-- Ensure space-y-1 is applied -->
+                        <button class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 1</button>
+                        <button class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 2</button>
+                        <button class="level-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">Level 3</button>
                     </div>
                 </div>
 
                 <!-- Number of Questions Selection -->
                 <div class="w-full sm:w-auto">
                     <h3 class="text-lg mb-2 text-center">Number of Questions</h3>
-                    <div class="flex justify-center space-x-2">
-                        <button class="num-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">1</button>
-                        <button class="num-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">5</button>
-                        <button class="num-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">10</button>
-                        <button class="num-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">25</button>
-                        <button class="num-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">50</button>
+                    <div class="flex flex-col space-y-1"> <!-- Ensure space-y-1 is applied -->
+                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">1</button>
+                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">5</button>
+                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">10</button>
+                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">25</button>
+                        <button class="num-btn selection-button px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition">50</button>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
         <div id="question-container" class="w-full max-w-md bg-white p-6 relative">
             <div class="content-wrapper">
                 <h2 id="question-prompt" class="text-xl mb-4">Loading question...</h2>
-                <div id="options-container" class="flex flex-col space-y-2">
+                <div id="options-container" class="flex flex-col space-y-1"> <!-- Changed space-y-2 to space-y-1 -->
                     <!-- Options will be dynamically inserted here -->
                 </div>
             </div>
