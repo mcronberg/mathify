@@ -7,6 +7,15 @@
     <title>Mathify</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        @media (min-width: 768px) {
+            .selection-button, .start-test-button {
+                width: 200px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -100,7 +109,7 @@
             <!-- Start Test Button -->
             <div class="mt-6 text-center">
                 <button id="start-test-btn"
-                    class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition" disabled>Start
+                    class="start-test-button px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition" disabled>Start
                     Test</button>
             </div>
         </div>
