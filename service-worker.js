@@ -1,12 +1,12 @@
 const CACHE_NAME = 'mathify-cache-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/css/style.css',
-    '/script/app.js',
-    '/manifest.json',
-    '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png'
+    '/mathify/',
+    '/mathify/index.html',
+    '/mathify/css/style.css',
+    '/mathify/script/app.js',
+    '/mathify/manifest.json',
+    '/mathify/icons/icon-192x192.png',
+    '/mathify/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', event => {
