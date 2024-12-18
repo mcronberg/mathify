@@ -5,6 +5,10 @@ export function initStartScreenUI(settings, providers, startTest) {
     const levelButtons = document.querySelectorAll('.level-btn');
     const questionButtons = document.querySelectorAll('.num-btn');
 
+    // log arguments
+    console.log(settings, providers, startTest);
+
+
     let selectedOperation = null;
     let selectedLevel = null;
     let selectedNumQuestions = null;
