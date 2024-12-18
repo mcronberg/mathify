@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         @media (min-width: 768px) {
-            .selection-button, .start-test-button {
+
+            .selection-button,
+            .start-test-button {
                 width: 200px;
                 height: 50px;
                 font-size: 1.25rem;
@@ -26,26 +28,11 @@
     <!-- Header -->
     <header class="bg-gray-800 text-white p-4 sticky top-0 flex justify-between items-center z-50">
         <h1 class="text-xl">Mathify</h1>
-        <nav class="hidden md:flex md:items-center">
-            <!-- Removed "Start" and "Contact" links -->
-            <a href="#" class="px-4 py-2 text-white">About</a>
+        <nav class=" md:flex md:items-center">
+            <a href="#" class="px-1 py-1 text-white">Settings</a>
+            <a href="#" class="px-1 py-1 text-white">About</a>
         </nav>
-        <button id="burger-menu" class="md:hidden text-white focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
     </header>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu"
-        class="fixed right-0 top-0 h-full w-64 bg-gray-800 z-50 transform translate-x-full transition-transform duration-300">
-        <div class="flex flex-col p-4">
-            <!-- Removed "Start" and "Contact" links -->
-            <a href="#" class="text-white py-2">About</a>
-        </div>
-    </div>
 
     <!-- Start Screen -->
     <main id="start-screen" class="flex-grow p-4 flex flex-col items-center justify-center">
@@ -98,7 +85,8 @@
             <!-- Start Test Button -->
             <div class="mt-6 text-center">
                 <button id="start-test-btn"
-                    class="start-test-button px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition" disabled>Start
+                    class="start-test-button px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                    disabled>Start
                     Test</button>
             </div>
         </div>
