@@ -27,6 +27,13 @@ export class SubtractionProvider extends MathProvider {
         numbers.push(x);
         numbers.push(y);
         let answer = x - y;
+
+        if (this.level === 3 && this.generateRandomNumber(1, 2) === 1) {
+            let z = Math.floor(Math.random() * (max - min + 1)) + min;
+            numbers.push(z);
+            answer -= z;
+        }
+
         console.log(`Generated Subtraction Question: ${numbers.join(' - ')} = ${answer}`);
 
         let options = [];
@@ -44,6 +51,19 @@ export class SubtractionProvider extends MathProvider {
         }
 
         if (this.level === 2) {
+            options.push({ text: answer.toString(), value: answer, isCorrect: true });
+
+            let count = 0;
+            while (count < 3) {
+                let randomNumber = this.generateRandomNumber(-50, 50);
+                if (randomNumber + answer !== answer && !options.find(option => option.value === (answer + randomNumber))) {
+                    options.push({ text: (answer + randomNumber).toString(), value: answer + randomNumber, isCorrect: false });
+                    count++;
+                }
+            }
+        }
+
+        if (this.level === 3) {
             options.push({ text: answer.toString(), value: answer, isCorrect: true });
 
             let count = 0;
