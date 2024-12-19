@@ -5,7 +5,9 @@ const SETTINGS_KEY = "mathify_settings";
 export default class Settings {
     constructor() {
         this.defaultSettings = {
-            name: "User"
+            name: "User",
+            timer: true, // Add timer setting
+            penaltyWait: 3 // Add penalty wait setting in seconds
         };
 
         this.settings = this.loadSettings();
@@ -30,7 +32,12 @@ export default class Settings {
 
     // Get the current settings
     getSettings() {
-        return this.settings;
+        return { ...this.defaultSettings, ...this.settings };
+    }
+
+    // Get specific setting
+    getSetting(key) {
+        return this.settings[key] !== undefined ? this.settings[key] : this.defaultSettings[key];
     }
 
     // Reset settings to default values

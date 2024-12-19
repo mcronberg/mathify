@@ -191,7 +191,8 @@ export function initStartScreenUI(settings, providers, startTest) {
     if (startTestBtn) {
         startTestBtn.addEventListener('click', () => {
             console.log(selectedOperation, selectedLevel, selectedNumQuestions);
-            startTest(selectedOperation, selectedLevel, selectedNumQuestions);
+            startTest(selectedOperation, selectedLevel, selectedNumQuestions, settings); // Pass settings
+            localStorage.setItem('testStartTime', Date.now()); // Save the start time
         });
     }
 }

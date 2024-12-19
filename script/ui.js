@@ -19,6 +19,6 @@ export function initUI(settings, providers) {
         document.getElementById('question-prompt').textContent = 'Loading question...';
     }
 
-    const startTest = initQuestionScreenUI(providers, endTest);
-    initStartScreenUI(settings, providers, startTest);
+    const questionScreenStartTest = initQuestionScreenUI(providers, endTest, settings);
+    initStartScreenUI(settings, providers, questionScreenStartTest);
 }
