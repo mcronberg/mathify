@@ -13,6 +13,7 @@ export function initQuestionScreenUI(providers, endTest, settings) {
     let currentQuestion = null;
     let mixedQuestions = [];
     let timerInterval;
+    let answerTimer;
 
     function startTest(selectedOperation, selectedLevel, selectedNumQuestions) {
         if (selectedOperation === null || selectedLevel === null || selectedNumQuestions === null) {
@@ -79,9 +80,27 @@ export function initQuestionScreenUI(providers, endTest, settings) {
                 button.addEventListener('click', handleOptionClick);
                 optionsContainer.appendChild(button);
             });
+
+            // Start answer timer only if enabled
+            if (answerTimer) {
+                clearTimeout(answerTimer);
+            }
+            if (testSettings.getSetting('enableMaxTime')) {
+                const maxTime = testSettings.getSetting('maxAnswerTime')[selectedLevel] * 1000;
+                answerTimer = setTimeout(() => {
+                    disableButtons(true);
+                    showAnimation('timeout');
+                    setTimeout(() => {
+                        currentQuestionIndex += 1;
+                        disableButtons(false);
+                        loadQuestion();
+                    }, 1000);
+                }, maxTime);
+            }
         }
 
         function handleOptionClick(event) {
+            clearTimeout(answerTimer); // Clear the answer timer when an option is selected
             const selectedValue = parseInt(event.target.value);
             const isCorrect = selectedValue === currentQuestion.correctAnswer;
 
@@ -133,6 +152,9 @@ export function initQuestionScreenUI(providers, endTest, settings) {
             if (type === 'correct') {
                 animationMsg.textContent = '✅ Correct!';
                 animationMsg.classList.add('text-green-500', 'font-bold', 'text-lg', 'fade-in');
+            } else if (type === 'timeout') {
+                animationMsg.textContent = '⏰ Time\'s up!';
+                animationMsg.classList.add('text-yellow-500', 'font-bold', 'text-lg', 'fade-in');
             } else {
                 animationMsg.textContent = '❌ Wrong Answer!';
                 animationMsg.classList.add('text-red-500', 'font-bold', 'text-lg', 'shake');
@@ -147,6 +169,7 @@ export function initQuestionScreenUI(providers, endTest, settings) {
 
         function endTest() {
             clearInterval(timerInterval); // Stop the timer
+            clearTimeout(answerTimer);
             timerElement.textContent = ''; // Clear the timer display
             startScreen.classList.remove('hidden');
             questionScreen.classList.add('hidden');
@@ -160,6 +183,7 @@ export function initQuestionScreenUI(providers, endTest, settings) {
     if (endTestBtn) {
         endTestBtn.addEventListener('click', () => {
             clearInterval(timerInterval); // Stop the timer
+            clearTimeout(answerTimer);
             timerElement.textContent = ''; // Clear the timer display
             endTest();
         });

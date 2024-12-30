@@ -25,13 +25,11 @@ export function initUI(settings, providers) {
     if (nav) {
         nav.innerHTML = ''; // Clear any existing links
         const aboutLink = document.createElement('a');
-        aboutLink.href = '#';
+        aboutLink.href = GITHUB_REPO;
         aboutLink.className = 'px-1 py-1 text-white';
         aboutLink.textContent = 'About';
-        aboutLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert(`Mathify v${APP_VERSION}\n\nGitHub Repository:\n${GITHUB_REPO}`);
-        });
+        aboutLink.target = '_blank';  // Open in new tab
+        aboutLink.rel = 'noopener noreferrer';  // Security best practice
         nav.appendChild(aboutLink);
     }
 

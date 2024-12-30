@@ -7,7 +7,13 @@ export default class Settings {
         this.defaultSettings = {
             name: "User",
             timer: true, // Add timer setting
-            penaltyWait: 3 // Add penalty wait setting in seconds
+            penaltyWait: 3, // Add penalty wait setting in seconds
+            enableMaxTime: true,  // Add this setting
+            maxAnswerTime: {
+                1: 2,  // Level 1: 2 seconds
+                2: 3,  // Level 2: 3 seconds
+                3: 30  // Level 3: 30 seconds
+            }
         };
 
         this.settings = this.loadSettings();
