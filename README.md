@@ -4,7 +4,7 @@ A simple web-based math practice game to help improve basic arithmetic skills. (
 
 ## Try It Out
 
-Visit [Mathify](https://mcronberg.github.io/Mathify/) to start practicing!
+Visit [Mathify](https://mcronberg.github.io/mathify/) to start practicing!
 
 ## About the Project
 
@@ -89,6 +89,7 @@ Once installed, Mathify will appear on your home screen like any other app and c
 
 - [HTML5](https://html.spec.whatwg.org/)
 - [JavaScript (ECMAScript 2015+)](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
+- [CSS3](https://www.w3.org/TR/CSS/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - PWA (Progressive Web App)
 - GitHub Copilot
