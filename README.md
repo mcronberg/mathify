@@ -2,7 +2,7 @@
 
 A simple web-based math practice game to help improve basic arithmetic skills. (Version 2024-12-30)
 
-> **Note**: Even this README file was generated entirely by GitHub Copilot and AI chat interactions, with zero human code writing. The only human input was requesting features and providing feedback. This represents a complete end-to-end AI-assisted development process, including documentation. [View project on GitHub](https://github.com/mcronberg/Mathify)
+
 
 ## About the Project
 
@@ -10,6 +10,8 @@ This project serves as an experiment to test the capabilities of AI-assisted dev
 - GitHub Copilot for code generation
 - Visual Studio Code as the IDE
 - AI-driven conversation for architecture and design decisions
+
+> **Note**: Even this README file was generated entirely by GitHub Copilot and AI chat interactions, with zero human code writing. The only human input was requesting features and providing feedback. This represents a complete end-to-end AI-assisted development process, including documentation.
 
 > **Development Status**: This project is under active development and needs refactoring to improve code quality and maintainability. Consider it a proof of concept demonstrating AI-assisted development capabilities.
 
