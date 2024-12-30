@@ -2,7 +2,9 @@
 
 A simple web-based math practice game to help improve basic arithmetic skills. (Version 2024-12-30)
 
+## Try It Out
 
+Visit [Mathify](https://mcronberg.github.io/Mathify/) to start practicing!
 
 ## About the Project
 
@@ -100,6 +102,4 @@ The entire development process was guided by AI:
 3. Bug fixes and improvements were developed through AI conversation
 4. Even this documentation was AI-generated
 
-## Try It Out
 
-Visit [Mathify](https://mcronberg.github.io/Mathify/) to start practicing!
