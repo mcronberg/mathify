@@ -20,13 +20,19 @@ export function initUI(settings, providers) {
         document.getElementById('question-prompt').textContent = 'Loading question...';
     }
 
-    // Add about button handler
-    const aboutButton = document.querySelector('nav a[href="#"]:last-child');
-    if (aboutButton) {
-        aboutButton.addEventListener('click', (e) => {
+    // Initialize navigation
+    const nav = document.querySelector('nav');
+    if (nav) {
+        nav.innerHTML = ''; // Clear any existing links
+        const aboutLink = document.createElement('a');
+        aboutLink.href = '#';
+        aboutLink.className = 'px-1 py-1 text-white';
+        aboutLink.textContent = 'About';
+        aboutLink.addEventListener('click', (e) => {
             e.preventDefault();
             alert(`Mathify v${APP_VERSION}\n\nGitHub Repository:\n${GITHUB_REPO}`);
         });
+        nav.appendChild(aboutLink);
     }
 
     const questionScreenStartTest = initQuestionScreenUI(providers, endTest, settings);
